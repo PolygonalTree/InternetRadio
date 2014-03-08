@@ -1,0 +1,31 @@
+extends layout
+
+block content
+	script(src="http://code.jquery.com/jquery-2.0.3.min.js")
+	script(src="/javascripts/view.index.js")
+	div.container
+		div.row
+			div.hero-unit.span8
+				h1 Maite's Radio
+				h2 list of radio channels
+				p Welcome to #{title}, this is the list of radio channels:
+		
+			div.span8
+				ul#stations-list.thumbnails
+					each station in stations
+						li(class='station thumbnail')
+							a(href='/station/#{station.name}') 
+								img(src="#{station.thumbnail}" width="100" alt="")
+		div.span8
+			input#shutdown.btn-large(type="button", name="shutdown", value="shutdown")  
+	
+	script.
+		$('li.station a').click(function() {	
+			var name = $(this).text();
+			//alert("call!");
+			$.get('/station/' + name);
+			return false;
+		});
+		$('#shutdown').click(function(){
+			$.get('/shutdown')
+		});

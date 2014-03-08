@@ -1,0 +1,7 @@
+extends layout
+
+block content
+  h2 list of radio channels
+  p 
+	|Welcome to #{title}, this is the list of radio channels, select 
+	|one to activate
